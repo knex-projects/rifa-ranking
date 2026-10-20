@@ -1,21 +1,53 @@
 @import "tailwindcss";
 
+/* Color tokens from the Figma file (rankingRifas), named after its variables. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --p0: #120c1a;
+  --p1: #25153b;
+  --p3: #5e3891;
+  --p5: #a56fee;
+  --pp0: #664989;
+  --pp2: #a06fdb;
+  --pp3: #b679ff;
+  --g3: #04d361;
+  --g4: #00ee6b;
+  --g5: #00ff73;
+  --w0: #ffffff;
+  --w1: #efefef;
+
+  --background: var(--p0);
+  --foreground: var(--w1);
+
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-p0: var(--p0);
+  --color-p1: var(--p1);
+  --color-p3: var(--p3);
+  --color-p5: var(--p5);
+  --color-pp0: var(--pp0);
+  --color-pp2: var(--pp2);
+  --color-pp3: var(--pp3);
+  --color-g3: var(--g3);
+  --color-g4: var(--g4);
+  --color-g5: var(--g5);
+  --color-w0: var(--w0);
+  --color-w1: var(--w1);
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-quantico);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* The footer's track holds its text twice, so sliding by half loops seamlessly. */
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
