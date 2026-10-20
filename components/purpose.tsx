@@ -1,8 +1,7 @@
 import Image from "next/image";
 
-// Placeholder copied from the design until the real text is sent.
 const PURPOSE_TEXT =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue.";
+  "Somos a KNEX Jr Consultoria, Empresa Júnior de Computação da UEPB – Campus VII. Com esta rifa, queremos arrecadar fundos para custear a ida dos nossos membros ao Aurora, evento voltado para Empresas Juniores, que acontece nos dias 21 e 22 de novembro. Cada número comprado nos deixa mais perto de viver essa experiência!";
 
 export function Purpose() {
   return (
