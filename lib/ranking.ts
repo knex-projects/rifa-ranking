@@ -21,6 +21,9 @@ export type Ranking = {
 
 const PODIUM_POSITIONS = 3;
 
+// Connecting words in Portuguese names, which never stand alone in a Display Name.
+const PARTICLES = new Set(["da", "das", "de", "do", "dos", "e"]);
+
 const COLUMNS = {
   id: "id",
   fullName: "participante",
@@ -91,15 +94,17 @@ function toSeller(
   if (!id || !fullName) return null;
 
   const words = fullName.split(" ");
+  // A particle as the second word takes the next one along: "Lorena dos Santos", not "Lorena dos".
+  const displayWords = words.slice(0, PARTICLES.has(words[1]?.toLowerCase()) ? 3 : 2);
   const photoName = rawPhotoName.trim().toLowerCase().replace(/\.png$/, "");
   const ticketsSold = rawTicketsSold.trim();
 
   return {
     id,
     fullName,
-    displayName: words.slice(0, 2).join(" "),
-    initials: words
-      .slice(0, 2)
+    displayName: displayWords.join(" "),
+    initials: displayWords
+      .filter((word) => !PARTICLES.has(word.toLowerCase()))
       .map((word) => word[0])
       .join("")
       .toUpperCase(),

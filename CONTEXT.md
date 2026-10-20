@@ -27,7 +27,7 @@ A Seller's complete name as recorded in the Sales Sheet (e.g. "Carlos Eduardo Am
 _Avoid_: Participant, participante
 
 **Display Name**:
-The first two words of a Seller's Full Name (e.g. "Carlos Eduardo", "Alessandro Viana"), as shown in the Ranking.
+The first two words of a Seller's Full Name (e.g. "Carlos Eduardo", "Alessandro Viana"), as shown in the Ranking. When the second word is a particle (da, das, de, do, dos, e), the word after it is included too (e.g. "Lorena dos Santos").
 _Avoid_: Username, nickname
 
 **Photo Name**:
