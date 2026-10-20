@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Figma's shader runtime and effects, copied verbatim from the design file.
+    "lib/custom-effect-runtime/**",
+    "lib/custom-effects/**",
   ]),
 ]);
 
