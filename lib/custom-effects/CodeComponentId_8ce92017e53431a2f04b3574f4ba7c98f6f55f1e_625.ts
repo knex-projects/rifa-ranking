@@ -790,10 +790,14 @@ export function render(device, frame) {
         s.bindGroup = null;
         s.backdropBindGroup = null;
     }
+    // The runtime reports output.width/height in CSS pixels; the attachments must match the
+    // output texture's device-pixel size or the render pass fails on scaled displays.
+    const attachmentWidth = frame.output.physicalWidth ?? frame.output.width;
+    const attachmentHeight = frame.output.physicalHeight ?? frame.output.height;
     if (!s.depthTexture ||
         !s.msaaTexture ||
-        s.attachmentWidth !== frame.output.width ||
-        s.attachmentHeight !== frame.output.height ||
+        s.attachmentWidth !== attachmentWidth ||
+        s.attachmentHeight !== attachmentHeight ||
         s.attachmentFormat !== frame.output.format) {
         if (s.depthTexture) {
             s.depthTexture.destroy();
@@ -803,8 +807,8 @@ export function render(device, frame) {
         }
         s.msaaTexture = device.createTexture({
             size: {
-                width: frame.output.width,
-                height: frame.output.height,
+                width: attachmentWidth,
+                height: attachmentHeight,
                 depthOrArrayLayers: 1,
             },
             format: frame.output.format,
@@ -813,8 +817,8 @@ export function render(device, frame) {
         });
         s.depthTexture = device.createTexture({
             size: {
-                width: frame.output.width,
-                height: frame.output.height,
+                width: attachmentWidth,
+                height: attachmentHeight,
                 depthOrArrayLayers: 1,
             },
             format: "depth24plus",
@@ -823,8 +827,8 @@ export function render(device, frame) {
         });
         s.msaaView = s.msaaTexture.createView();
         s.depthView = s.depthTexture.createView();
-        s.attachmentWidth = frame.output.width;
-        s.attachmentHeight = frame.output.height;
+        s.attachmentWidth = attachmentWidth;
+        s.attachmentHeight = attachmentHeight;
         s.attachmentFormat = frame.output.format;
     }
     const width = frame.output.width;
